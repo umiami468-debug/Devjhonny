@@ -269,27 +269,7 @@
         document.getElementById("captchaText").innerText = captcha;
     }
     gerarCaptcha();
-
-        // Lista de senhas proibidas / muito comuns
-        const senhasFaceis = [
-            '123456','12345678','123456789','qwerty','abc123',
-            '111111','123123','senha','password','iloveyou',
-            'admin','root','666666','000000','1234567890'
-        ];
-
-        if(!regras.test(senha)){
-            alert("Senha fraca! Use pelo menos 8 caracteres, letras maiúsculas, minúsculas, números e símbolos (!@#$%)");
-            return false;
-        }
-
-        if(senhasFaceis.includes(senha.toLowerCase())){
-            alert("Essa senha é muito comum e fácil de descobrir, escolha outra!");
-            return false;
-        }
-
-        return true;
-    }
-
+    
     window.cadastrar = () => {
         let email = document.getElementById("email").value;
         let senha = document.getElementById("senha").value;
@@ -299,10 +279,6 @@
         if(senha !== confirmar){
             alert("As senhas não coincidem");
             return;
-        }
-
-        if(!senhaForte(senha)){
-            return; // Interrompe se a senha não for segura
         }
 
         if(captchaInput !== captcha){
