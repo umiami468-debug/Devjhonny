@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jhonny Dev | Sites Profissionais</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #0b0b0b;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+nav h1 {
+    font-size: 1.5rem;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    animation: fadeUp 1s ease;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+}
+
+.hero p {
+    margin-top: 10px;
+    color: #aaa;
+}
+
+.cta {
+    margin-top: 25px;
+    display: inline-block;
+    padding: 12px 25px;
+    background: #00ff88;
+    color: black;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cta:hover {
+    transform: scale(1.05);
+}
+
+/* SERVICES */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #151515;
+    padding: 25px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(0,255,136,0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #aaa;
+}
+
+.price {
+    margin-top: 15px;
+    color: #00ff88;
+    font-weight: bold;
+}
+
+/* SOCIAL PROOF */
+.testimonials {
+    margin-top: 60px;
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.testimonial-box {
+    background: #151515;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.6s;
+}
+
+.testimonial-box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>Jhonny Dev</h1>
+    <a href="https://wa.me/5511913236089">Contato</a>
+</nav>
+
+<section class="hero">
+    <h2>Sites modernos que realmente vendem</h2>
+    <p>Design profissional, rápido e feito sob medida</p>
+    <a href="https://wa.me/5511913236089" class="cta">Falar comigo</a>
+</section>
+
+<div class="container">
+
+    <div class="cards">
+        <div class="card">
+            <h3>🌐 Site Profissional</h3>
+            <p>Ideal para empresas, projetos e presença online forte.</p>
+            <div class="price">A partir de R$150</div>
+        </div>
+
+        <div class="card">
+            <h3>🛒 Loja Online</h3>
+            <p>Venda seus produtos com um sistema moderno e funcional.</p>
+            <div class="price">A partir de R$250</div>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Landing Page</h3>
+            <p>Focada em conversão para vendas e anúncios.</p>
+            <div class="price">A partir de R$120</div>
+        </div>
+    </div>
+
+    <!-- PROVAS SOCIAIS -->
+    <div class="testimonials">
+        <h2>Clientes satisfeitos</h2>
+
+        <div class="testimonial-box">
+            <p>"Meu site ficou muito profissional, aumentou minhas vendas!"</p>
+            <small>- Lucas R.</small>
+        </div>
+
+        <div class="testimonial-box">
+            <p>"Entrega rápida e qualidade absurda, recomendo demais."</p>
+            <small>- Mariana S.</small>
+        </div>
+
+        <div class="testimonial-box">
+            <p>"Finalmente alguém que faz algo bem feito de verdade."</p>
+            <small>- Felipe M.</small>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Jhonny Dev
+</footer>
+
+<script>
+const boxes = document.querySelectorAll('.testimonial-box');
+
+window.addEventListener('scroll', () => {
+    boxes.forEach(box => {
+        const top = box.getBoundingClientRect().top;
+        if(top < window.innerHeight - 50){
+            box.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

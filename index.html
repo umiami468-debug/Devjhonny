@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jhonny Dev</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+height:100vh;
+background: radial-gradient(circle at top,#0f0c29,#302b63,#24243e);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.container{
+background:rgba(255,255,255,0.05);
+backdrop-filter: blur(15px);
+padding:40px;
+border-radius:20px;
+width:320px;
+text-align:center;
+box-shadow:0 0 40px rgba(0,255,200,0.1);
+}
+
+h1{
+margin-bottom:10px;
+background:linear-gradient(90deg,#00ffcc,#00ff88);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:6px 0;
+border:none;
+border-radius:10px;
+background:rgba(255,255,255,0.1);
+color:white;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#00ffcc,#00ff88);
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+.link{
+margin-top:10px;
+display:block;
+color:#00ffcc;
+cursor:pointer;
+font-size:0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Jhonny Dev</h1>
+
+<input id="email" placeholder="Email">
+<input id="senha" type="password" placeholder="Senha">
+<input id="confirmar" type="password" placeholder="Confirmar senha">
+
+<!-- CAPTCHA -->
+<p id="captchaText"></p>
+<input id="captchaInput" placeholder="Digite o código acima">
+
+<button onclick="cadastrar()">Cadastrar</button>
+<button onclick="login()">Entrar</button>
+
+<span class="link" onclick="resetSenha()">Esqueci minha senha</span>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCpj2IUjoCXTVZ5-Qubh7GkGsJ1xbCF-jM",
+  authDomain: "devjhonny-b33c4.firebaseapp.com",
+  projectId: "devjhonny-b33c4"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+/* CAPTCHA */
+let captcha;
+function gerarCaptcha(){
+captcha = Math.random().toString(36).substring(2,7);
+document.getElementById("captchaText").innerText = "Código: " + captcha;
+}
+gerarCaptcha();
+
+/* CADASTRO */
+window.cadastrar = () => {
+let email = document.getElementById("email").value;
+let senha = document.getElementById("senha").value;
+let confirmar = document.getElementById("confirmar").value;
+let captchaInput = document.getElementById("captchaInput").value;
+
+if(senha !== confirmar){
+alert("As senhas não coincidem");
+return;
+}
+
+if(captchaInput !== captcha){
+alert("Captcha incorreto");
+gerarCaptcha();
+return;
+}
+
+createUserWithEmailAndPassword(auth,email,senha)
+.then(()=>{
+alert("Conta criada!");
+window.location.href = "painel.html";
+})
+.catch(e=>alert(e.message));
+};
+
+/* LOGIN */
+window.login = () => {
+let email = document.getElementById("email").value;
+let senha = document.getElementById("senha").value;
+
+signInWithEmailAndPassword(auth,email,senha)
+.then(()=>{
+window.location.href = "painel.html";
+})
+.catch(e=>alert(e.message));
+};
+
+/* RESET SENHA */
+window.resetSenha = () => {
+let email = document.getElementById("email").value;
+
+if(!email){
+alert("Digite seu email primeiro");
+return;
+}
+
+sendPasswordResetEmail(auth,email)
+.then(()=>alert("Email de recuperação enviado"))
+.catch(e=>alert(e.message));
+};
+</script>
+
+</body>
+</html>
