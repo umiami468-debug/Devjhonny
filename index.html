@@ -241,11 +241,6 @@
         .catch(e=>alert(e.message));
     };
 
- /* LOGIN GOOGLE - MODO REDIRECT */
-document.getElementById('btnGoogle').addEventListener('click', () => {
-    // Usando signInWithRedirect para evitar problema de popup
-    signInWithRedirect(auth, provider);
-});
 
 // Código para detectar se voltou do login
 getRedirectResult(auth)
