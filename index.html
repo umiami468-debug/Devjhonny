@@ -120,6 +120,83 @@
         user-select: none;
         border: 1px solid #333;
     }
+
+    /* BOTÕES */
+    .btn-main {
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(90deg, var(--cor-verde), var(--cor-primaria));
+        color: black;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 5px 20px rgba(0,255,136,0.3);
+    }
+    .btn-main:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 30px rgba(0,255,136,0.5);
+    }
+
+    /* BOTÃO GOOGLE */
+    .btn-google {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-weight: 500;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: 1px solid #444;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .btn-google i {
+        color: #ea4335;
+        font-size: 1.2rem;
+    }
+    .btn-google:hover {
+        background: rgba(255,255,255,0.15);
+        border-color: #ea4335;
+    }
+
+    .divider {
+        margin: 20px 0;
+        color: #555;
+        position: relative;
+    }
+    .divider::before, .divider::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        height: 1px;
+        background: #333;
+    }
+    .divider::before { left: 0; }
+    .divider::after { right: 0; }
+
+    .link {
+        margin-top: 15px;
+        display: inline-block;
+        color: var(--cor-primaria);
+        cursor: pointer;
+        font-size: 0.9rem;
+        text-decoration: none;
+    }
+    .link:hover {
+        text-decoration: underline;
+    }
+
     /* RESPONSIVO */
     @media (max-width: 400px) {
         .login-container {
@@ -241,17 +318,16 @@
         .catch(e=>alert(e.message));
     };
 
-
-// Código para detectar se voltou do login
-getRedirectResult(auth)
-    .then((result) => {
-        if (result.user) {
+    /* 👇 LOGIN GOOGLE - MODO FORÇA BRUTA 👇 */
+    document.getElementById('btnGoogle').addEventListener('click', () => {
+        signInWithPopup(auth, provider)
+        .then((result) => {
             window.location.href = "painel.html";
-        }
-    })
-    .catch((error) => {
-        alert("Erro: " + error.message);
-        console.error(error);
+        })
+        .catch((error) => {
+            alert("Erro: " + error.message);
+            console.error(error);
+        });
     });
 
     /* RESET SENHA */
