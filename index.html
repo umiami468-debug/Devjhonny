@@ -270,11 +270,6 @@
     }
     gerarCaptcha();
 
-    // ===== FUNÇÃO DE VALIDAR SENHA FORTE =====
-    function senhaForte(senha) {
-        // Regras: 8+ caracteres, maiúscula, minúscula, número e especial
-        const regras = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        
         // Lista de senhas proibidas / muito comuns
         const senhasFaceis = [
             '123456','12345678','123456789','qwerty','abc123',
