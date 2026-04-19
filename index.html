@@ -318,16 +318,22 @@
         .catch(e=>alert(e.message));
     };
 
-    /* 👇 LOGIN GOOGLE - MODO FORÇA BRUTA 👇 */
-    document.getElementById('btnGoogle').addEventListener('click', () => {
-        signInWithPopup(auth, provider)
-        .then((result) => {
+ /* LOGIN GOOGLE - MODO REDIRECT */
+document.getElementById('btnGoogle').addEventListener('click', () => {
+    // Usando signInWithRedirect para evitar problema de popup
+    signInWithRedirect(auth, provider);
+});
+
+// Código para detectar se voltou do login
+getRedirectResult(auth)
+    .then((result) => {
+        if (result.user) {
             window.location.href = "painel.html";
-        })
-        .catch((error) => {
-            alert("Erro: " + error.message);
-            console.error(error);
-        });
+        }
+    })
+    .catch((error) => {
+        alert("Erro: " + error.message);
+        console.error(error);
     });
 
     /* RESET SENHA */
