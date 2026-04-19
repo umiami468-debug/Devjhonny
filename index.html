@@ -241,7 +241,6 @@
 </div>
 
 <!-- SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
@@ -325,10 +324,12 @@
     window.loginGoogle = () => {
         signInWithPopup(auth, provider)
         .then((result) => {
+            console.log("Login com Google sucesso:", result.user);
             window.location.href = "painel.html";
         })
         .catch((error) => {
-            alert(error.message);
+            console.error("Erro Google:", error);
+            alert("Erro: " + error.message);
         });
     };
 
@@ -345,5 +346,3 @@
     };
 </script>
 
-</body>
-</html>
